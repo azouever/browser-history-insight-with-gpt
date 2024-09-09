@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "History Insight With GPT",
+  "version": "1.0",
+  "permissions": [
+    "history"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+      "16": "logo/logo-16.png",
+      "48": "logo/logo-48.png",
+      "128": "logo/logo-128.png"
+  },
+  "options_page": "settings/settings.html",
+  "action": {
+    "default_title": "History Insight With GPT",
+    "default_popup": "popup/popup.html"
+  }
+}
+
