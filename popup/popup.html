@@ -1,24 +1,119 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Recent History</title>
-  <style>
+  <head>
+    <meta charset="UTF-8">
+    <title>History Insight With GPT</title>
+    <style>
     body {
-      font-family: Arial, sans-serif;
-      width: 300px;
+    font-family: Arial, sans-serif;
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+    text-align: center;
+    color: #333;
     }
     ul {
-      list-style-type: none;
-      padding: 0;
+    list-style-type: none;
+    padding: 0;
     }
     li {
-      margin-bottom: 5px;
+    margin-bottom: 5px;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
-  </style>
-</head>
-<body>
-  <h1>Recent History</h1>
-  <ul id="history-list"></ul>
-  <script src="popup.js"></script>
-</body>
+    .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    }
+    .info {
+    font-size: 0.8em;
+    color: #555;
+    }
+    .date-picker, .results-per-page, .export-button {
+    margin-bottom: 10px;
+    }
+    select, input[type="datetime-local"], button {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    }
+    button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    }
+    button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    }
+    #export-button {
+    background-color: #28a745;
+    }
+    #export-button:hover {
+    background-color: #218838;
+    }
+    #export-button:after {
+    content: " (Copy to Clipboard)";
+    font-size: 0.8em;
+    color: #fff;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>History Insight With GPT</h1>
+    <div class="api-key-section">
+      <label for="api-key">OpenAI API Key:</label>
+      <input type="text" id="api-key" placeholder="Enter your API key">
+      <button id="analyze-button">Analyze With GPT</button>
+    </div>
+    <form id="time-form">
+      <label for="time-range">Select Time Range:</label>
+      <select id="time-range">
+        <option value="1h">Last 1 Hour</option>
+        <option value="3h">Last 3 Hours</option>
+        <option value="6h">Last 6 Hours</option>
+        <option value="1d">Last 1 Day</option>
+        <option value="3d">Last 3 Days</option>
+        <option value="7d">Last 7 Days</option>
+      </select>
+    </form>
+    <div class="date-picker">
+      <label for="start-date">Start Date:</label>
+      <input type="datetime-local" id="start-date" value="">
+      &nbsp;&nbsp;
+      <label for="end-date">End Date:</label>
+      <input type="datetime-local" id="end-date" value="">
+      &nbsp;&nbsp;
+      <button id="search-button">Search</button>
+    </div>
+    <div class="results-per-page">
+      <label for="results-per-page">Results per Page:</label>
+      <select id="results-per-page">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    <div class="export-button">
+      <button id="export-button">Export All Results</button>
+    </div>
+    <ul id="history-list"></ul>
+    <div class="pagination">
+      <button id="prev-page" disabled>Previous</button>
+      <span id="page-info"></span>
+      <button id="next-page" disabled>Next</button>
+    </div>
+    <script src="popup.js"></script>
+  </body>
 </html>
+
