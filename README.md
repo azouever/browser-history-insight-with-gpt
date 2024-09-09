@@ -21,7 +21,7 @@ History Insight With GPT is a browser extension that allows users to analyze the
 
 1. Clone this repository to your local machine.
    ```bash
-   git clone https://github.com/yourusername/history-insight-with-gpt.git
+   git clone https://github.com/azouever/history-insight-with-gpt.git
    ```
 2. Open the Chrome browser and go to `chrome://extensions/`.
 3. Enable "Developer mode" in the top right corner.
