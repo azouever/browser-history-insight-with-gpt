@@ -1,119 +1,191 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>History Insight With GPT</title>
-    <style>
+<head>
+  <meta charset="UTF-8">
+  <title>History Insight With GPT</title>
+  <style>
     body {
-    font-family: Arial, sans-serif;
-    width: 300px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f4f4f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 600px;
+      height: 400px;
+      margin: 0;
+      padding: 10px;
+      background-color: #f0f8ff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
     h1 {
-    text-align: center;
-    color: #333;
+      text-align: center;
+      color: #007bff;
+      font-size: 1.5em;
+      margin-bottom: 10px;
     }
-    ul {
-    list-style-type: none;
-    padding: 0;
+    .main-content {
+      display: flex;
+      flex: 1;
+      gap: 10px;
     }
-    li {
-    margin-bottom: 5px;
-    padding: 8px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    .column {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
-    .pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+    .section {
+      margin-bottom: 15px;
     }
-    .info {
-    font-size: 0.8em;
-    color: #555;
+    .section > div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
     }
-    .date-picker, .results-per-page, .export-button {
-    margin-bottom: 10px;
+    .section > div:last-child {
+      margin-bottom: 0;
     }
-    select, input[type="datetime-local"], button {
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    label, select, input[type="datetime-local"], input[type="text"], button {
+      flex: 1;
+    }
+    label {
+      flex: 0.5;
     }
     button {
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 5px;
+      border: none;
+      transition: background-color 0.3s;
+      margin-right: 5px;
+      flex: 1;
+      text-align: center;
+    }
+    button:hover {
+      background-color: #0056b3;
     }
     button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+      background-color: #ccc;
+      cursor: not-allowed;
     }
     #export-button {
-    background-color: #28a745;
+      background-color: #28a745;
     }
     #export-button:hover {
-    background-color: #218838;
+      background-color: #218838;
     }
-    #export-button:after {
-    content: " (Copy to Clipboard)";
-    font-size: 0.8em;
-    color: #fff;
+    #goto-md-editor {
+      background-color: #ffc107;
     }
-    </style>
-  </head>
-  <body>
-    <h1>History Insight With GPT</h1>
-    <div class="api-key-section">
-      <label for="api-key">OpenAI API Key:</label>
-      <input type="text" id="api-key" placeholder="Enter your API key">
-      <button id="analyze-button">Analyze With GPT</button>
+    #goto-md-editor:hover {
+      background-color: #e0a800;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 5px;
+      padding: 5px;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>History Insight With GPT</h1>
+  <div class="main-content">
+    <div class="column">
+      <div class="section api-key-section">
+        <div>
+          <label for="api-address">API Address:</label>
+          <input type="text" id="api-address" placeholder="https://api.openai.com/v1/chat/completions">
+        </div>
+        <div>
+          <label for="api-key">API Key:</label>
+          <input type="text" id="api-key" placeholder="Enter your API key">
+        </div>
+        <div>
+          <button id="analyze-button">Analyze With GPT</button>
+        </div>
+      </div>
+      <div class="section language-form">
+        <div>
+          <label for="language-range">Response Language:</label>
+          <select id="resp-language-select">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+      <div class="section time-form">
+        <div>
+          <label for="time-range">Time Range:</label>
+          <select id="time-range">
+            <option value="5m">Last 5 Minutes</option>
+            <option value="10m">Last 10 Minutes</option>
+            <option value="30m">Last 15 Minutes</option>
+            <option value="1h">Last 1 Hour</option>
+            <option value="3h">Last 3 Hours</option>
+            <option value="6h">Last 6 Hours</option>
+            <option value="1d">Last 1 Day</option>
+            <option value="3d">Last 3 Days</option>
+            <option value="7d">Last 7 Days</option>
+          </select>
+        </div>
+      </div>
+      <div class="section date-picker">
+        <div>
+          <label for="start-date">Start Date:</label>
+          <input type="datetime-local" id="start-date">
+        </div>
+        <div>
+          <label for="end-date">End Date:</label>
+          <input type="datetime-local" id="end-date">
+        </div>
+        <div>
+          <button id="search-button">Search</button>
+        </div>
+      </div>
+      <div class="section results-per-page">
+        <div>
+          <label for="results-per-page">Results per Page:</label>
+          <select id="results-per-page">
+            <option value="7">7</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+      </div>
+      <div class="section button-group">
+        <button id="export-button">Export All Results</button>
+        <button id="goto-md-editor">Goto MD Editor</button>
+      </div>
     </div>
-    <form id="time-form">
-      <label for="time-range">Select Time Range:</label>
-      <select id="time-range">
-        <option value="1h">Last 1 Hour</option>
-        <option value="3h">Last 3 Hours</option>
-        <option value="6h">Last 6 Hours</option>
-        <option value="1d">Last 1 Day</option>
-        <option value="3d">Last 3 Days</option>
-        <option value="7d">Last 7 Days</option>
-      </select>
-    </form>
-    <div class="date-picker">
-      <label for="start-date">Start Date:</label>
-      <input type="datetime-local" id="start-date" value="">
-      &nbsp;&nbsp;
-      <label for="end-date">End Date:</label>
-      <input type="datetime-local" id="end-date" value="">
-      &nbsp;&nbsp;
-      <button id="search-button">Search</button>
+    <div class="column">
+      <ul id="history-list" class="section"></ul>
+      <div class="pagination section">
+        <button id="prev-page" disabled>Previous</button>
+        <span id="page-info">Page 1 of X</span>
+        <button id="next-page" disabled>Next</button>
+      </div>
     </div>
-    <div class="results-per-page">
-      <label for="results-per-page">Results per Page:</label>
-      <select id="results-per-page">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-      </select>
-    </div>
-    <div class="export-button">
-      <button id="export-button">Export All Results</button>
-    </div>
-    <ul id="history-list"></ul>
-    <div class="pagination">
-      <button id="prev-page" disabled>Previous</button>
-      <span id="page-info"></span>
-      <button id="next-page" disabled>Next</button>
-    </div>
-    <script src="popup.js"></script>
-  </body>
+  </div>
+  <script src="popup.js"></script>
+</body>
 </html>
-
