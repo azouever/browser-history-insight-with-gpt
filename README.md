@@ -4,7 +4,7 @@ History Insight With GPT is a browser extension that allows users to analyze the
 
 ## Some Screenshots
 
-![进入页](https://www.github.com/azouever/browsing-history-insight-with-gpt/demo_case/home.png)
+![进入页](https://github.com/azouever/browser-history-insight-with-gpt/blob/main/demo_case/home.png)
 
 ## Features
 
