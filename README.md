@@ -2,6 +2,10 @@
 
 History Insight With GPT is a browser extension that allows users to analyze their browsing history using OpenAI's GPT API. This tool helps users gain insights into their online behavior patterns and habits over specific time periods.
 
+## Some Screenshots
+
+![进入页](https://www.github.com/azouever/browsing-history-insight-with-gpt/demo_case/home.png)
+
 ## Features
 
 - **Time Range Selection**: Choose from predefined time ranges or set custom start and end dates to filter browsing history.
