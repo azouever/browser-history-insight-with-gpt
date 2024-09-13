@@ -3,110 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>History Insight With GPT</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      width: 600px;
-      height: 400px;
-      margin: 0;
-      padding: 10px;
-      background-color: #f0f8ff;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    h1 {
-      text-align: center;
-      color: #007bff;
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
-    .main-content {
-      display: flex;
-      flex: 1;
-      gap: 10px;
-    }
-    .column {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-    .section {
-      margin-bottom: 15px;
-    }
-    .section > div {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .section > div:last-child {
-      margin-bottom: 0;
-    }
-    label, select, input[type="datetime-local"], input[type="text"], button {
-      flex: 1;
-    }
-    label {
-      flex: 0.5;
-    }
-    button {
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 5px;
-      border: none;
-      transition: background-color 0.3s;
-      margin-right: 5px;
-      flex: 1;
-      text-align: center;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-    #export-button {
-      background-color: #28a745;
-    }
-    #export-button:hover {
-      background-color: #218838;
-    }
-    #goto-md-editor {
-      background-color: #ffc107;
-    }
-    #goto-md-editor:hover {
-      background-color: #e0a800;
-    }
-    .button-group {
-      display: flex;
-      gap: 10px;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      margin-bottom: 5px;
-      padding: 5px;
-      background-color: #f9f9f9;
-      border-radius: 4px;
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-    }
-    .pagination {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
+<div id="overlay" style="display:none;">
+  <div class="overlay-content">Generating results, please wait...</div>
+</div>
   <h1>History Insight With GPT</h1>
   <div class="main-content">
     <div class="column">
@@ -186,6 +88,7 @@
       </div>
     </div>
   </div>
+  <script src="rawdeflate.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
