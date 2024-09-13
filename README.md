@@ -1,6 +1,14 @@
+Certainly! Here's how you can structure the information:
+
 # History Insight With GPT
 
 History Insight With GPT is a browser extension that allows users to analyze their browsing history using OpenAI's GPT API. This tool helps users gain insights into their online behavior patterns and habits over specific time periods.
+
+## Install
+
+To get started with History Insight With GPT, you can easily install it from the Chrome Web Store:
+- **Online Install**: Download the extension directly from the [Chrome Web Store](https://chromewebstore.google.com/detail/history-insight-with-gpt/nicgcgnihibfffdeanpeafjoapakbnmf?authuser=0&hl=en).
+Once installed, you'll be able to utilize all the features to gain insights into your browsing history.
 
 ## Some Screenshots
 
