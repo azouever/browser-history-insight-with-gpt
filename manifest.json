@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "History Insight With GPT",
-  "version": "1.0",
+  "version": "1.0.1",
   "permissions": [
     "history"
   ],
