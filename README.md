@@ -1,3 +1,5 @@
+
+
 Certainly! Here's how you can structure the information:
 
 # History Insight With GPT
@@ -33,7 +35,7 @@ Once installed, you'll be able to utilize all the features to gain insights into
 
 1. Clone this repository to your local machine.
    ```bash
-   git clone https://github.com/azouever/history-insight-with-gpt.git
+   git clone https://github.com/azouever/browser-history-insight-with-gpt.git
    ```
 2. Open the Chrome browser and go to `chrome://extensions/`.
 3. Enable "Developer mode" in the top right corner.
